@@ -1,140 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KENTA & AMI Wedding Comic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wedding Comic Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --comic-yellow: #FFD700;
+            --comic-red: #E63946;
+            --comic-blue: #1D3557;
+            --border: 5px solid #000;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&display=swap" rel="stylesheet">
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Arial Black', sans-serif;
+        }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Anton',sans-serif;overflow:hidden;background:#000;}
+        /* ページ全体のコンテナ */
+        .comic-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            perspective: 1000px;
+        }
 
-/* 背景写真 */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:url('bg.jpg') center/cover no-repeat;
-  filter:brightness(0.6);
-  z-index:-2;
-}
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            box-sizing: border-box;
+            border: var(--border);
+            z-index: 10;
+        }
 
-/* ドット背景 */
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:radial-gradient(#000 1px,transparent 1px);
-  background-size:6px 6px;
-  opacity:0.15;
-  z-index:-1;
-}
+        /* めくられた後の状態：左にスライド＆回転 */
+        .page.flipped {
+            transform: translateX(-120%) rotateZ(-10deg);
+            opacity: 0;
+            pointer-events: none;
+        }
 
-.book{width:100vw;height:100vh;perspective:2000px;position:relative;}
+        /* アメコミ風装飾 */
+        .dot-bg {
+            background-image: radial-gradient(rgba(0,0,0,0.1) 15%, transparent 16%);
+            background-size: 8px 8px;
+        }
 
-.page{
-  position:absolute;
-  inset:0;
-  background:#fff;
-  border:8px solid #000;
-  padding:20px;
-  transform-origin:left center;
-  transition:transform 0.9s ease;
-  box-shadow:10px 0 25px rgba(0,0,0,.35);
-}
+        .panel {
+            flex: 1;
+            border-bottom: var(--border);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-.page::after{
-  content:"";
-  position:absolute;
-  top:0; right:0;
-  width:25px;height:100%;
-  background:linear-gradient(to left, rgba(0,0,0,.25),transparent);
-}
+        .panel:last-child { border-bottom: none; }
 
-.page.flipped{transform:rotateY(-180deg);}
-
-h1,h2{font-family:'Bangers';letter-spacing:2px;margin-bottom:10px;}
-.center{height:100%;display:flex;flex-direction:column;justify-content:center;text-align:center;}
-
-.burst{background:yellow;border:4px solid #000;display:inline-block;padding:10px 20px;transform:rotate(-5deg);margin-bottom:15px;}
-.panel{border:4px solid #000;padding:12px;margin:10px 0;}
-.photo{width:100%;height:180px;background-size:cover;background-position:center;border:4px solid #000;margin-bottom:10px;}
-.hero{background:#d62828;color:#fff;}
-.heroine{background:#6a4c93;color:#fff;}
-.bang{animation:bang 0.6s ease;}
-@keyframes bang{0%{transform:scale(0);}80%{transform:scale(1.2);}100%{transform:scale(1);}}
-.flip-hint{position:absolute;bottom:20px;right:20px;font-family:'Bangers';font-size:18px;color:#000;}
-</style>
-</head>
-
-<body>
-<audio id="flipSound" src="page.mp3"></audio>
-
-<div class="book">
-
-  <!-- COVER -->
-  <div class="page">
-    <div class="center">
-      <div class="burst bang">WEDDING INVITATION</div>
-      <h1>KENTA & AMI</h1>
-      <p>OUR LOVE STORY<br>Issue #1</p>
-      <p>👉 TAP / SWIPE 👉</p>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <div class="page">
-    <h2 class="bang">HERO : KENTA</h2>
-    <div class="photo" style="background-image:url('kenta.jpg')"></div>
-    <div class="panel hero">
-      包容力 ★★★★★<br>行動力 ★★★★☆<br>弱点：寝不足
-    </div>
-    <div class="flip-hint">FLIP ▶</div>
-  </div>
-
-  <!-- HEROINE -->
-  <div class="page">
-    <h2 class="bang">HEROINE : AMI</h2>
-    <div class="photo" style="background-image:url('ami.jpg')"></div>
-    <div class="panel heroine">
-      笑顔で全体回復<br>決断力 ★★★★★<br>雨を呼ぶ力
-    </div>
-    <div class="flip-hint">FLIP ▶</div>
-  </div>
-
-  <!-- STORY -->
-  <div class="page">
-    <h2>OUR STORY</h2>
-    <div class="photo" style="background-image:url('story.jpg')"></div>
-    <p>出会いは偶然、恋は必然だった…</p>
-    <div class="flip-hint">FLIP ▶</div>
-  </div>
-
-  <!-- DETAILS -->
-  <div class="page">
-    <h2>MISSION DETAILS</h2>
-    <div class="panel">
-      📅 2026.XX.XX<br>📍 TOKYO<br>⏰ 11:00 START
-    </div>
-  </div>
-
-</div>
-
-<script>
-const pages=document.querySelectorAll('.page');
-const sound=document.getElementById('flipSound');
-let index=0;
-let startX=0;
-
-function flipNext(){if(index<pages.length){pages[index].classList.add('flipped');sound?.play();index++;}}
-function flipBack(){if(index>0){index--;pages[index].classList.remove('flipped');sound?.play();}}
-
-document.addEventListener('click',flipNext);
-document.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
-document.addEventListener('touchend',e=>{const endX=e.changedTouches[0].clientX;if(startX-endX>50)flipNext();if(endX-startX>50)flipBack();});
-</script>
-
-</body>
-</html>
+        /* 特殊なパネル演出 */
+        .impact-text {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            color: var(--comic-yellow
