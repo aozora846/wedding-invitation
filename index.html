@@ -3,77 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>結婚式のご案内</title>
+<title>アメコミ風結婚式招待状</title>
 <style>
     body {
-        font-family: 'Helvetica', 'Arial', sans-serif;
         margin: 0;
-        padding: 0;
-        background-color: #fff8f0;
-        color: #333;
-        text-align: center;
+        font-family: 'Arial', sans-serif;
+        background-color: #fff;
+        overflow-x: hidden;
     }
-    header {
-        background-color: #f7d6c1;
-        padding: 40px 20px;
+
+    .page {
+        height: 100vh; /* 画面全体を1ページに */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #fdf6f0;
+        border-bottom: 8px solid #b85c38; /* アメコミ風ライン */
     }
-    header h1 {
-        margin: 0;
-        font-size: 2rem;
+
+    .page h1 {
+        font-size: 2.2rem;
         color: #b85c38;
+        text-shadow: 2px 2px #fff;
+        margin-bottom: 20px;
     }
-    main {
+
+    .page p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: center;
+        max-width: 90%;
+        color: #333;
+    }
+
+    .comic-frame {
+        border: 5px solid #000;
         padding: 20px;
-    }
-    .date, .venue, .message {
-        margin: 20px 0;
-        font-size: 1.1rem;
-    }
-    .btn {
-        display: inline-block;
-        padding: 12px 25px;
-        margin-top: 30px;
-        background-color: #b85c38;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: bold;
-    }
-    footer {
-        margin-top: 50px;
-        padding: 20px;
-        font-size: 0.9rem;
-        color: #777;
-    }
-</style>
-</head>
-<body>
-<header>
-    <h1>私たちの結婚式へようこそ</h1>
-</header>
+        margin: 10px;
+        background-colo
 
-<main>
-    <div class="message">
-        親愛なる皆さまへ<br>
-        このたび、結婚することになりました。<br>
-        ぜひ私たちの特別な日にお越しください。
-    </div>
-
-    <div class="date">
-        📅 日時: 2026年5月10日（日）<br>
-        🕒 時間: 14:00 開宴
-    </div>
-
-    <div class="venue">
-        📍 会場: 東京ガーデンホール<br>
-        東京都中央区〇〇町1-2-3
-    </div>
-
-    <a class="btn" href="#">出欠確認はこちら</a>
-</main>
-
-<footer>
-    ※ご不明な点はメールでお問い合わせください：example@email.com
-</footer>
-</body>
-</html>
