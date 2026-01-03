@@ -1,265 +1,79 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KENTA & AMI Wedding</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>結婚式のご案内</title>
+<style>
+    body {
+        font-family: 'Helvetica', 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff8f0;
+        color: #333;
+        text-align: center;
+    }
+    header {
+        background-color: #f7d6c1;
+        padding: 40px 20px;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 2rem;
+        color: #b85c38;
+    }
+    main {
+        padding: 20px;
+    }
+    .date, .venue, .message {
+        margin: 20px 0;
+        font-size: 1.1rem;
+    }
+    .btn {
+        display: inline-block;
+        padding: 12px 25px;
+        margin-top: 30px;
+        background-color: #b85c38;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+    footer {
+        margin-top: 50px;
+        padding: 20px;
+        font-size: 0.9rem;
+        color: #777;
+    }
+</style>
 </head>
 <body>
-  <div id="book">
+<header>
+    <h1>私たちの結婚式へようこそ</h1>
+</header>
 
-    <!-- 表紙 -->
-    <section class="page cover comic">
-      <h1>KENTA & AMI</h1>
-      <h2>2026/3/20 Wedding</h2>
-      <div class="flip-hint">→めくる</div>
-      <div class="sound-effect">Flip!</div>
-    </section>
+<main>
+    <div class="message">
+        親愛なる皆さまへ<br>
+        このたび、結婚することになりました。<br>
+        ぜひ私たちの特別な日にお越しください。
+    </div>
 
-    <!-- 挨拶 -->
-    <section class="page greeting comic">
-      <div class="speech-bubble pop"><p>謹啓</p></div>
-      <div class="speech-bubble pop delay1"><p>皆様におかれましては ますますご清祥のこととお慶び申し上げます。</p></div>
-      <div class="speech-bubble pop delay2"><p>このたび 私たちは結婚をすることになりました。感謝を込めてささやかな小宴を催したく存じます。</p></div>
-      <div class="speech-bubble pop delay3"><p>ぜひご出席をいただきたく ご案内申し上げます。</p></div>
-      <div class="speech-bubble pop delay4"><p>謹白</p></div>
-      <div class="sound-effect">Flip!</div>
-    </section>
+    <div class="date">
+        📅 日時: 2026年5月10日（日）<br>
+        🕒 時間: 14:00 開宴
+    </div>
 
-    <!-- ABOUT US -->
-    <section class="page about-us comic">
-      <div class="person">
-        <img src="kenta.jpg" alt="新郎KENTA">
-        <h3>新郎：KENTA</h3>
-        <p>生年月日：xxxx年xx月xx日</p>
-        <p>趣味：〇〇</p>
-        <p>能力：〇〇</p>
-      </div>
-      <div class="person">
-        <img src="ami.jpg" alt="新婦AMI">
-        <h3>新婦：AMI</h3>
-        <p>生年月日：xxxx年xx月xx日</p>
-        <p>趣味：〇〇</p>
-        <p>能力：〇〇</p>
-      </div>
-      <div class="person">
-        <img src="dog.jpg" alt="愛犬">
-        <h3>愛犬：〇〇</h3>
-        <p>生年月日：xxxx年xx月xx日</p>
-        <p>趣味：〇〇</p>
-        <p>能力：〇〇</p>
-      </div>
-    </section>
+    <div class="venue">
+        📍 会場: 東京ガーデンホール<br>
+        東京都中央区〇〇町1-2-3
+    </div>
 
-    <!-- COUNTDOWN -->
-    <section class="page countdown comic">
-      <h2>結婚式まであと</h2>
-      <div id="countdown">0日 0時間 0分 0秒</div>
-    </section>
+    <a class="btn" href="#">出欠確認はこちら</a>
+</main>
 
-    <!-- EVENT -->
-    <section class="page event comic">
-      <h2>2026年3月20日（金曜）</h2>
-      <div class="speech-bubble pop"><p>挙式：12:00（受付11:30）</p></div>
-      <div class="speech-bubble pop delay1"><p>披露宴：13:00（受付12:30）</p></div>
-      <div class="speech-bubble pop delay2"><p>会場：〇〇</p></div>
-    </section>
-
-    <!-- 参加URL -->
-    <section class="page join comic">
-      <h2>ご参加はこちら</h2>
-      <a href="参加URL" class="button">参加フォームへ</a>
-      <div class="qr">
-        <img src="qr.png" alt="QRコード">
-      </div>
-    </section>
-
-  </div>
-
-  <script src="script.js"></script>
+<footer>
+    ※ご不明な点はメールでお問い合わせください：example@email.com
+</footer>
 </body>
 </html>
-/* 共通設定 */
-body {
-  font-family: 'Comic Neue', sans-serif;
-  margin: 0;
-  background: #FFF8E7;
-  overflow-x: hidden;
-}
-#book {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* ページ */
-.page {
-  width: 90%;
-  max-width: 800px;
-  min-height: 100vh;
-  padding: 50px 20px;
-  box-sizing: border-box;
-  background: #fff;
-  margin: 20px 0;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 10px;
-  position: relative;
-  transform-origin: left center;
-  transition: transform 0.8s ease-in-out;
-}
-
-/* 3Dめくり */
-.page.flipped { transform: rotateY(-180deg); }
-
-/* 表紙 */
-.cover {
-  background: url('cover.jpg') center/cover no-repeat;
-  color: #FFD700;
-  text-align: center;
-}
-.cover h1 { font-size: 3rem; margin-top: 40vh; }
-.cover h2 { font-size: 1.5rem; margin-top: 1rem; }
-
-/* flipヒント */
-.flip-hint {
-  position: absolute;
-  bottom: 20px; right: 20px;
-  font-size: 1rem;
-  animation: blink 1s infinite;
-}
-@keyframes blink { 0%,50%,100%{opacity:1;} 25%,75%{opacity:0;} }
-
-/* ABOUT US */
-.person {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.person img {
-  width: 150px; height: 150px;
-  border-radius: 50%;
-  border: 4px solid #FF6600;
-}
-
-/* COUNTDOWN */
-.countdown #countdown {
-  font-size: 2rem;
-  color: #FF3333;
-  text-align: center;
-  margin-top: 50px;
-}
-
-/* EVENT */
-.event h2 { color: #FF6600; }
-.event .speech-bubble { margin-top: 20px; }
-
-/* 参加URL */
-.join .button {
-  display: inline-block;
-  background: #FF6600;
-  color: #fff;
-  padding: 15px 30px;
-  text-decoration: none;
-  border-radius: 10px;
-  font-size: 1.2rem;
-}
-.join .qr img {
-  margin-top: 20px;
-  width: 150px;
-}
-
-/* コミック風 */
-.comic { border:5px solid #FF6600; border-radius:10px; perspective:1000px; }
-
-/* 吹き出し */
-.speech-bubble {
-  background: #FFF;
-  border: 3px solid #FF6600;
-  border-radius: 20px;
-  padding: 15px;
-  max-width: 80%;
-  margin: 20px auto;
-  font-size: 1.2rem;
-  position: relative;
-  opacity:0;
-  transform: translateY(30px) scale(0.5);
-  transition: all 0.6s ease-out;
-}
-.speech-bubble::after {
-  content:'';
-  position:absolute;
-  bottom:-15px; left:20px;
-  border-width:15px 10px 0;
-  border-style:solid;
-  border-color:#FFF transparent transparent transparent;
-}
-
-/* 弾けるアニメ */
-.pop { animation: popIn 0.6s forwards; }
-.delay1 { animation-delay:0.5s; }
-.delay2 { animation-delay:1s; }
-.delay3 { animation-delay:1.5s; }
-.delay4 { animation-delay:2s; }
-@keyframes popIn {
-  0% {opacity:0; transform:scale(0.5) translateY(30px);}
-  70% {opacity:1; transform:scale(1.2) translateY(-10px);}
-  100% {transform:scale(1) translateY(0);}
-}
-
-/* 擬音 */
-.sound-effect {
-  position:absolute; top:10px; right:10px;
-  font-size:1.5rem; color:#FF3333; font-weight:bold;
-  opacity:0;
-  animation: soundIn 0.5s forwards 1.5s;
-}
-@keyframes soundIn { 0%{opacity:0; transform:scale(0);} 100%{opacity:1; transform:scale(1);} }
-// ページめくり
-const pages = document.querySelectorAll('.page');
-let currentPage = 0;
-pages[currentPage].classList.remove('flipped');
-
-function flipPage(next=true){
-  pages[currentPage].classList.add('flipped');
-  currentPage += next?1:-1;
-  if(currentPage<0) currentPage=0;
-  if(currentPage>=pages.length) currentPage=pages.length-1;
-  pages[currentPage].classList.remove('flipped');
-
-  // 吹き出しアニメ再発火
-  const bubbles = pages[currentPage].querySelectorAll('.speech-bubble');
-  bubbles.forEach(b => {
-    b.style.opacity=0;
-    b.style.transform='translateY(30px) scale(0.5)';
-    setTimeout(()=>{ b.style.opacity=1; b.style.transform='translateY(0) scale(1)'; },50);
-  });
-}
-
-// PC操作
-window.addEventListener('wheel', e=>{ if(e.deltaY>0) flipPage(); else flipPage(false); });
-window.addEventListener('keydown', e=>{ if(e.key==='ArrowRight') flipPage(); if(e.key==='ArrowLeft') flipPage(false); });
-
-// スマホスワイプ
-let startX=0;
-window.addEventListener('touchstart', e=>{ startX=e.touches[0].clientX; });
-window.addEventListener('touchend', e=>{
-  const endX = e.changedTouches[0].clientX;
-  if(endX-startX>50) flipPage(false);
-  if(startX-endX>50) flipPage();
-});
-
-// COUNTDOWN
-const countdown = document.getElementById('countdown');
-function updateCountdown(){
-  const target = new Date('2026-03-20T12:00:00');
-  const now = new Date();
-  const diff = target-now;
-  if(diff<=0){ countdown.innerText='結婚式当日です！'; return; }
-  const days=Math.floor(diff/1000/60/60/24);
-  const hours=Math.floor((diff/1000/60/60)%24);
-  const minutes=Math.floor((diff/1000/60)%60);
-  const seconds=Math.floor((diff/1000)%60);
-  countdown.innerText=`${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
-}
-setInterval(updateCountdown,1000);
-updateCountdown();
