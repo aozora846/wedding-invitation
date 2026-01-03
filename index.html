@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>アメコミ風結婚式招待状</title>
+<title>結婚式WEB招待状</title>
 <style>
     body {
         margin: 0;
@@ -43,11 +43,17 @@
         text-align: center;
     }
 
-    p {
+    p, li {
         font-size: 1.2rem;
         line-height: 1.6;
         text-align: center;
         color: #333;
+        white-space: pre-line; /* 改行を反映 */
+    }
+
+    ul {
+        padding-left: 20px;
+        text-align: left;
     }
 
     a.btn {
@@ -60,10 +66,111 @@
         font-weight: bold;
         border-radius: 8px;
     }
+
+    .countdown {
+        font-size: 1.5rem;
+        color: #b85c38;
+        margin-top: 10px;
+        font-weight: bold;
+    }
 </style>
 </head>
 <body>
 
+<!-- 1. 結婚のお知らせ -->
 <div class="page comic-frame">
-    <h1>結婚のお知らせ！</h1
+    <h1>結婚のお知らせ</h1>
+    <p>ついに、私たちは結婚することになりました！🎉<br>ぜひ皆様にお越しいただければ幸いです。</p>
+</div>
 
+<!-- 2. COUNTDOWN -->
+<div class="page comic-frame">
+    <h1>COUNTDOWN</h1>
+    <p>2026年3月20日まで</p>
+    <div class="countdown" id="countdown"></div>
+</div>
+
+<!-- 3. メッセージ -->
+<div class="page comic-frame">
+    <h1>ご挨拶</h1>
+    <p>謹啓　皆様におかれましては
+ご清祥のこととお慶び申し上げます
+このたび 私たちは結婚式を
+挙げることになりました
+つきましては 日頃お世話になっている皆様に
+お集まりいただきささやかな披露宴を
+催したいと存じます
+ご多用中 誠に恐縮ではございますが
+ご来臨の栄を賜りたく
+謹んでご案内申し上げます
+　　　　　　　　　　　　　　　　　　謹白
+    </p>
+</div>
+
+<!-- 4. プロフィール -->
+<div class="page comic-frame">
+    <h1>プロフィール</h1>
+    <ul>
+        <li>新郎: ○○ ○○</li>
+        <li>新婦: ○○ ○○</li>
+        <li>愛犬: ○○</li>
+    </ul>
+</div>
+
+<!-- 5. Party Information -->
+<div class="page comic-frame">
+    <h1>Party Information</h1>
+    <ul>
+        <li>開催日: 2026年3月20日 金曜日</li>
+        <li>挙式 開始時刻: 11:30 / 受付: 00:00 / 終了予定: 00:00</li>
+        <li>披露宴 開始時刻: 12:00 / 受付: 00:00 / お披楽喜: 00:00</li>
+        <li>会場情報: favoriホテル</li>
+        <li>〒100-0000 東京都千代田区◯-◯-◯</li>
+        <li>TEL: 00-0000-0000</li>
+    </ul>
+</div>
+
+<script>
+    // スクロールで簡単にページ浮き上がり効果
+    const pages = document.querySelectorAll('.page');
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY + window.innerHeight * 0.7;
+        pages.forEach(page => {
+            if (scrollPos > page.offsetTop) {
+                page.style.opacity = 1;
+                page.style.transform = 'translateY(0)';
+            } else {
+                page.style.opacity = 0.6;
+                page.style.transform = 'translateY(30px)';
+            }
+        });
+    });
+
+    // 初期状態（最初のページは見える）
+    pages.forEach((page, index) => {
+        page.style.opacity = index === 0 ? 1 : 0.6;
+        page.style.transform = 'translateY(0)';
+    });
+
+    // COUNTDOWN タイマー
+    function updateCountdown() {
+        const countdownElement = document.getElementById('countdown');
+        const weddingDate = new Date('2026-03-20T00:00:00');
+        const now = new Date();
+        const diff = weddingDate - now;
+        if (diff <= 0) {
+            countdownElement.textContent = "当日です！🎉";
+            return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        countdownElement.textContent = `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
+
+</body>
+</html>
