@@ -3,108 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>結婚式WEB招待状</title>
-<!-- SwiperのCSS -->
+<title>アメコミ風結婚式招待状</title>
+
+<!-- Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
 <style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        font-family: 'Arial', sans-serif;
-        background-color: #fff;
-        overflow: hidden;
-    }
+body, html {
+    margin:0; padding:0; font-family:'Arial',sans-serif; background:#fff; overflow:hidden;
+}
 
-    /* Swiper全体 */
-    .swiper {
-        width: 100%;
-        height: 100vh;
-    }
+/* Swiper全体 */
+.swiper { width:100%; height:100vh; }
 
-    .swiper-slide {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-size: cover;
-        background-position: center;
-        position: relative;
-        padding: 20px;
-        box-sizing: border-box;
-    }
+/* 各スライド */
+.swiper-slide {
+    display:flex; justify-content:center; align-items:center;
+    background-size:cover; background-position:center;
+    position:relative;
+    overflow:hidden;
+}
 
-    .comic-frame {
-        border: 5px solid #000;
-        padding: 20px;
-        background-color: rgba(255,255,255,0.9);
-        box-shadow: 5px 5px 0 #000;
-        max-width: 90%;
-        text-align: center;
-        position: relative;
-    }
+/* 漫画コマ風フレーム */
+.comic-frame {
+    border:5px solid #000;
+    padding:20px;
+    background-color:rgba(255,255,255,0.9);
+    box-shadow:5px 5px 0 #000;
+    max-width:90%;
+    text-align:center;
+    position:relative;
+}
 
-    h1 {
-        font-size: 2rem;
-        color: #b85c38;
-        text-shadow: 2px 2px #fff;
-        margin-bottom: 20px;
-    }
+/* 吹き出し */
+.bubble {
+    position:relative; display:inline-block; background:#fff;
+    border:3px solid #000; border-radius:20px; padding:15px; margin:10px 0;
+    box-shadow:3px 3px 0 #000; max-width:100%;
+}
+.bubble::after {
+    content:''; position:absolute; bottom:-20px; left:30px;
+    border-width:20px 15px 0; border-style:solid;
+    border-color:#fff transparent transparent transparent;
+    transform:rotate(10deg);
+}
 
-    p, li {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        color: #333;
-        white-space: pre-line;
-    }
+/* 擬音 */
+.onomatopoeia {
+    font-size:2rem; color:#ff0000; font-weight:bold; text-shadow: 2px 2px #fff;
+    position:absolute; top:10px; left:10px; transform:rotate(-10deg);
+}
 
-    ul {
-        padding-left: 20px;
-        text-align: left;
-    }
+/* カウントダウン */
+.countdown { font-size:1.5rem; color:#b85c38; font-weight:bold; margin-top:10px; }
 
-    .countdown {
-        font-size: 1.5rem;
-        color: #b85c38;
-        font-weight: bold;
-        margin-top: 10px;
-    }
+/* ボタン */
+a.btn { display:inline-block; margin-top:15px; padding:12px 25px; background:#b85c38; color:#fff; text-decoration:none; font-weight:bold; border-radius:8px; }
 
-    a.btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 12px 25px;
-        background-color: #b85c38;
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 8px;
-    }
-
-    /* 漫画風吹き出し */
-    .bubble {
-        position: relative;
-        background: #fff;
-        border: 3px solid #000;
-        border-radius: 20px;
-        padding: 15px;
-        margin: 10px 0;
-        box-shadow: 3px 3px 0 #000;
-    }
-    .bubble::after {
-        content: '';
-        position: absolute;
-        bottom: -20px;
-        left: 30px;
-        border-width: 20px 15px 0;
-        border-style: solid;
-        border-color: #fff transparent transparent transparent;
-        transform: rotate(10deg);
-        border-bottom: none;
-    }
-
+/* RSVPポップアップ */
+#popup {
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center;
+    z-index:999;
+}
+#popup .content {
+    background:#fff; padding:20px; max-width:90%; border-radius:10px; text-align:center;
+}
+#popup button { margin-top:10px; padding:10px 20px; }
 </style>
 </head>
 <body>
+
+<!-- RSVPポップアップ -->
+<div id="popup">
+    <div class="content">
+        <h2>RSVPフォーム</h2>
+        <p>ここにフォームを埋め込めます（例: Googleフォーム）</p>
+        <button onclick="closePopup()">閉じる</button>
+    </div>
+</div>
 
 <!-- Swiper -->
 <div class="swiper">
@@ -112,6 +89,7 @@
         <!-- 1. 結婚のお知らせ -->
         <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1508780709619-79562169bc64?fit=crop&w=800&h=1200')">
             <div class="comic-frame bubble">
+                <div class="onomatopoeia">ドカーン！</div>
                 <h1>結婚のお知らせ</h1>
                 <p>ついに、私たちは結婚することになりました！🎉<br>ぜひ皆様にお越しいただければ幸いです。</p>
             </div>
@@ -120,6 +98,7 @@
         <!-- 2. COUNTDOWN -->
         <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?fit=crop&w=800&h=1200')">
             <div class="comic-frame bubble">
+                <div class="onomatopoeia">パチン！</div>
                 <h1>COUNTDOWN</h1>
                 <p>2026年3月20日まで</p>
                 <div class="countdown" id="countdown"></div>
@@ -129,6 +108,7 @@
         <!-- 3. メッセージ -->
         <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1498575207492-4d6314f017ef?fit=crop&w=800&h=1200')">
             <div class="comic-frame bubble">
+                <div class="onomatopoeia">ワオッ！</div>
                 <h1>ご挨拶</h1>
                 <p>謹啓　皆様におかれましては
 ご清祥のこととお慶び申し上げます
@@ -148,6 +128,7 @@
         <!-- 4. プロフィール -->
         <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?fit=crop&w=800&h=1200')">
             <div class="comic-frame bubble">
+                <div class="onomatopoeia">ヒュン！</div>
                 <h1>プロフィール</h1>
                 <ul>
                     <li>新郎: ○○ ○○</li>
@@ -160,6 +141,7 @@
         <!-- 5. Party Information -->
         <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?fit=crop&w=800&h=1200')">
             <div class="comic-frame bubble">
+                <div class="onomatopoeia">バシッ！</div>
                 <h1>Party Information</h1>
                 <ul>
                     <li>開催日: 2026年3月20日 金曜日</li>
@@ -169,49 +151,60 @@
                     <li>〒100-0000 東京都千代田区◯-◯-◯</li>
                     <li>TEL: 00-0000-0000</li>
                 </ul>
-                <a href="https://forms.gle/your-rsvp-link" class="btn" target="_blank">RSVPフォーム</a>
+                <a href="javascript:void(0)" class="btn" onclick="openPopup()">RSVPフォーム</a>
                 <a href="https://goo.gl/maps/your-map-link" class="btn" target="_blank">Googleマップで見る</a>
             </div>
         </div>
-
     </div>
-    <!-- ページネーション（点） -->
     <div class="swiper-pagination"></div>
 </div>
 
-<!-- Swiper JS -->
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script>
-    // Swiper初期化（横スライド）
+    // Swiper横スライド
     const swiper = new Swiper('.swiper', {
-        direction: 'horizontal',
-        loop: false,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
+        direction:'horizontal',
+        loop:false,
+        pagination:{ el:'.swiper-pagination', clickable:true },
     });
 
-    // COUNTDOWN タイマー
-    function updateCountdown() {
-        const countdownElement = document.getElementById('countdown');
-        const weddingDate = new Date('2026-03-20T00:00:00');
-        const now = new Date();
-        const diff = weddingDate - now;
-        if (diff <= 0) {
-            countdownElement.textContent = "当日です！🎉";
-            return;
-        }
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-        countdownElement.textContent = `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+    // COUNTDOWN
+    function updateCountdown(){
+        const countdown=document.getElementById('countdown');
+        const weddingDate=new Date('2026-03-20T00:00:00');
+        const now=new Date();
+        const diff=weddingDate-now;
+        if(diff<=0){ countdown.textContent="当日です！🎉"; return; }
+        const days=Math.floor(diff/(1000*60*60*24));
+        const hours=Math.floor((diff/(1000*60*60))%24);
+        const minutes=Math.floor((diff/(1000*60))%60);
+        const seconds=Math.floor((diff/1000)%60);
+        countdown.textContent=`${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
     }
-    setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown,1000);
     updateCountdown();
+
+    // パララックス演出
+    gsap.utils.toArray('.swiper-slide').forEach((slide)=>{
+        gsap.to(slide, {
+            backgroundPositionY: "40%",
+            ease:"none",
+            scrollTrigger:{
+                trigger:slide,
+                start:"top bottom",
+                end:"bottom top",
+                scrub:true
+            }
+        });
+    });
+
+    // RSVPポップアップ
+    function openPopup(){ document.getElementById('popup').style.display='flex'; }
+    function closePopup(){ document.getElementById('popup').style.display='none'; }
 </script>
 
 </body>
 </html>
-
