@@ -3,127 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Comic Invitation</title>
+<title>KENTA & AMI Wedding Comic</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Anton',sans-serif;overflow:hidden;background:#000;}
 
-body {
-  margin: 0;
-  font-family: 'Anton', sans-serif;
-  overflow: hidden;
+/* 背景写真 */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('bg.jpg') center/cover no-repeat;
+  filter:brightness(0.6);
+  z-index:-2;
 }
 
-/* 背景 */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("bg.jpg") center/cover no-repeat;
-  filter: brightness(0.6);
-  z-index: -2;
+/* ドット背景 */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(#000 1px,transparent 1px);
+  background-size:6px 6px;
+  opacity:0.15;
+  z-index:-1;
 }
 
-/* ドット */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(#000 1px, transparent 1px);
-  background-size: 6px 6px;
-  opacity: 0.15;
-  z-index: -1;
+.book{width:100vw;height:100vh;perspective:2000px;position:relative;}
+
+.page{
+  position:absolute;
+  inset:0;
+  background:#fff;
+  border:8px solid #000;
+  padding:20px;
+  transform-origin:left center;
+  transition:transform 0.9s ease;
+  box-shadow:10px 0 25px rgba(0,0,0,.35);
 }
 
-.book {
-  width: 100vw;
-  height: 100vh;
-  perspective: 2000px;
-  position: relative;
+.page::after{
+  content:"";
+  position:absolute;
+  top:0; right:0;
+  width:25px;height:100%;
+  background:linear-gradient(to left, rgba(0,0,0,.25),transparent);
 }
 
-.page {
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  border: 8px solid #000;
-  padding: 20px;
-  transform-origin: left center;
-  transition: transform 0.9s ease;
-  box-shadow: 10px 0 25px rgba(0,0,0,.35);
-}
+.page.flipped{transform:rotateY(-180deg);}
 
-.page::after {
-  /* ページ折れ */
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 25px;
-  height: 100%;
-  background: linear-gradient(to left, rgba(0,0,0,.25), transparent);
-}
+h1,h2{font-family:'Bangers';letter-spacing:2px;margin-bottom:10px;}
+.center{height:100%;display:flex;flex-direction:column;justify-content:center;text-align:center;}
 
-.page.flipped {
-  transform: rotateY(-180deg);
-}
-
-h1,h2 {
-  font-family: 'Bangers';
-  letter-spacing: 2px;
-}
-
-.center {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.burst {
-  background: yellow;
-  border: 4px solid black;
-  display: inline-block;
-  padding: 10px 20px;
-  transform: rotate(-5deg);
-  margin-bottom: 15px;
-}
-
-.panel {
-  border: 4px solid black;
-  padding: 12px;
-  margin: 10px 0;
-}
-
-.photo {
-  width: 100%;
-  height: 180px;
-  background-size: cover;
-  background-position: center;
-  border: 4px solid black;
-  margin-bottom: 10px;
-}
-
-.hero { background:#d62828; color:#fff; }
-.heroine { background:#6a4c93; color:#fff; }
-
-.bang {
-  animation: bang 0.6s ease;
-}
-
-@keyframes bang {
-  0% { transform: scale(0); }
-  80% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
+.burst{background:yellow;border:4px solid #000;display:inline-block;padding:10px 20px;transform:rotate(-5deg);margin-bottom:15px;}
+.panel{border:4px solid #000;padding:12px;margin:10px 0;}
+.photo{width:100%;height:180px;background-size:cover;background-position:center;border:4px solid #000;margin-bottom:10px;}
+.hero{background:#d62828;color:#fff;}
+.heroine{background:#6a4c93;color:#fff;}
+.bang{animation:bang 0.6s ease;}
+@keyframes bang{0%{transform:scale(0);}80%{transform:scale(1.2);}100%{transform:scale(1);}}
+.flip-hint{position:absolute;bottom:20px;right:20px;font-family:'Bangers';font-size:18px;color:#000;}
 </style>
 </head>
 
 <body>
-
 <audio id="flipSound" src="page.mp3"></audio>
 
 <div class="book">
@@ -143,10 +89,9 @@ h1,h2 {
     <h2 class="bang">HERO : KENTA</h2>
     <div class="photo" style="background-image:url('kenta.jpg')"></div>
     <div class="panel hero">
-      包容力 ★★★★★<br>
-      行動力 ★★★★☆<br>
-      弱点：寝不足
+      包容力 ★★★★★<br>行動力 ★★★★☆<br>弱点：寝不足
     </div>
+    <div class="flip-hint">FLIP ▶</div>
   </div>
 
   <!-- HEROINE -->
@@ -154,10 +99,9 @@ h1,h2 {
     <h2 class="bang">HEROINE : AMI</h2>
     <div class="photo" style="background-image:url('ami.jpg')"></div>
     <div class="panel heroine">
-      笑顔で全体回復<br>
-      決断力 ★★★★★<br>
-      雨を呼ぶ力
+      笑顔で全体回復<br>決断力 ★★★★★<br>雨を呼ぶ力
     </div>
+    <div class="flip-hint">FLIP ▶</div>
   </div>
 
   <!-- STORY -->
@@ -165,51 +109,31 @@ h1,h2 {
     <h2>OUR STORY</h2>
     <div class="photo" style="background-image:url('story.jpg')"></div>
     <p>出会いは偶然、恋は必然だった…</p>
+    <div class="flip-hint">FLIP ▶</div>
   </div>
 
   <!-- DETAILS -->
   <div class="page">
     <h2>MISSION DETAILS</h2>
     <div class="panel">
-      📅 2026.XX.XX<br>
-      📍 TOKYO<br>
-      ⏰ 11:00 START
+      📅 2026.XX.XX<br>📍 TOKYO<br>⏰ 11:00 START
     </div>
   </div>
 
 </div>
 
 <script>
-const pages = document.querySelectorAll('.page');
-const sound = document.getElementById('flipSound');
-let index = 0;
-let startX = 0;
+const pages=document.querySelectorAll('.page');
+const sound=document.getElementById('flipSound');
+let index=0;
+let startX=0;
 
-function flipNext() {
-  if (index < pages.length) {
-    pages[index].classList.add('flipped');
-    sound?.play();
-    index++;
-  }
-}
+function flipNext(){if(index<pages.length){pages[index].classList.add('flipped');sound?.play();index++;}}
+function flipBack(){if(index>0){index--;pages[index].classList.remove('flipped');sound?.play();}}
 
-function flipBack() {
-  if (index > 0) {
-    index--;
-    pages[index].classList.remove('flipped');
-    sound?.play();
-  }
-}
-
-document.addEventListener('click', flipNext);
-
-// スワイプ
-document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-document.addEventListener('touchend', e => {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) flipNext();
-  if (endX - startX > 50) flipBack();
-});
+document.addEventListener('click',flipNext);
+document.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{const endX=e.changedTouches[0].clientX;if(startX-endX>50)flipNext();if(endX-startX>50)flipBack();});
 </script>
 
 </body>
