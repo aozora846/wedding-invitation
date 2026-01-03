@@ -4,35 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>結婚式WEB招待状</title>
+<!-- SwiperのCSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 <style>
-    body {
+    body, html {
         margin: 0;
+        padding: 0;
         font-family: 'Arial', sans-serif;
         background-color: #fff;
-        overflow-x: hidden;
+        overflow: hidden;
     }
 
-    .page {
-        height: 100vh; /* 画面全体を1ページに */
+    /* Swiper全体 */
+    .swiper {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .swiper-slide {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-size: cover;
+        background-position: center;
+        position: relative;
         padding: 20px;
         box-sizing: border-box;
-        background-color: #fdf6f0;
-        border-bottom: 8px solid #b85c38; /* アメコミ風ライン */
-        transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
     .comic-frame {
         border: 5px solid #000;
         padding: 20px;
-        margin: 10px;
-        background-color: #fff;
+        background-color: rgba(255,255,255,0.9);
         box-shadow: 5px 5px 0 #000;
-        width: 90%;
-        max-width: 500px;
+        max-width: 90%;
+        text-align: center;
+        position: relative;
     }
 
     h1 {
@@ -40,20 +48,25 @@
         color: #b85c38;
         text-shadow: 2px 2px #fff;
         margin-bottom: 20px;
-        text-align: center;
     }
 
     p, li {
         font-size: 1.2rem;
         line-height: 1.6;
-        text-align: center;
         color: #333;
-        white-space: pre-line; /* 改行を反映 */
+        white-space: pre-line;
     }
 
     ul {
         padding-left: 20px;
         text-align: left;
+    }
+
+    .countdown {
+        font-size: 1.5rem;
+        color: #b85c38;
+        font-weight: bold;
+        margin-top: 10px;
     }
 
     a.btn {
@@ -67,33 +80,57 @@
         border-radius: 8px;
     }
 
-    .countdown {
-        font-size: 1.5rem;
-        color: #b85c38;
-        margin-top: 10px;
-        font-weight: bold;
+    /* 漫画風吹き出し */
+    .bubble {
+        position: relative;
+        background: #fff;
+        border: 3px solid #000;
+        border-radius: 20px;
+        padding: 15px;
+        margin: 10px 0;
+        box-shadow: 3px 3px 0 #000;
     }
+    .bubble::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 30px;
+        border-width: 20px 15px 0;
+        border-style: solid;
+        border-color: #fff transparent transparent transparent;
+        transform: rotate(10deg);
+        border-bottom: none;
+    }
+
 </style>
 </head>
 <body>
 
-<!-- 1. 結婚のお知らせ -->
-<div class="page comic-frame">
-    <h1>結婚のお知らせ</h1>
-    <p>ついに、私たちは結婚することになりました！🎉<br>ぜひ皆様にお越しいただければ幸いです。</p>
-</div>
+<!-- Swiper -->
+<div class="swiper">
+    <div class="swiper-wrapper">
+        <!-- 1. 結婚のお知らせ -->
+        <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1508780709619-79562169bc64?fit=crop&w=800&h=1200')">
+            <div class="comic-frame bubble">
+                <h1>結婚のお知らせ</h1>
+                <p>ついに、私たちは結婚することになりました！🎉<br>ぜひ皆様にお越しいただければ幸いです。</p>
+            </div>
+        </div>
 
-<!-- 2. COUNTDOWN -->
-<div class="page comic-frame">
-    <h1>COUNTDOWN</h1>
-    <p>2026年3月20日まで</p>
-    <div class="countdown" id="countdown"></div>
-</div>
+        <!-- 2. COUNTDOWN -->
+        <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?fit=crop&w=800&h=1200')">
+            <div class="comic-frame bubble">
+                <h1>COUNTDOWN</h1>
+                <p>2026年3月20日まで</p>
+                <div class="countdown" id="countdown"></div>
+            </div>
+        </div>
 
-<!-- 3. メッセージ -->
-<div class="page comic-frame">
-    <h1>ご挨拶</h1>
-    <p>謹啓　皆様におかれましては
+        <!-- 3. メッセージ -->
+        <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1498575207492-4d6314f017ef?fit=crop&w=800&h=1200')">
+            <div class="comic-frame bubble">
+                <h1>ご挨拶</h1>
+                <p>謹啓　皆様におかれましては
 ご清祥のこととお慶び申し上げます
 このたび 私たちは結婚式を
 挙げることになりました
@@ -104,52 +141,55 @@
 ご来臨の栄を賜りたく
 謹んでご案内申し上げます
 　　　　　　　　　　　　　　　　　　謹白
-    </p>
+                </p>
+            </div>
+        </div>
+
+        <!-- 4. プロフィール -->
+        <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?fit=crop&w=800&h=1200')">
+            <div class="comic-frame bubble">
+                <h1>プロフィール</h1>
+                <ul>
+                    <li>新郎: ○○ ○○</li>
+                    <li>新婦: ○○ ○○</li>
+                    <li>愛犬: ○○</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 5. Party Information -->
+        <div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?fit=crop&w=800&h=1200')">
+            <div class="comic-frame bubble">
+                <h1>Party Information</h1>
+                <ul>
+                    <li>開催日: 2026年3月20日 金曜日</li>
+                    <li>挙式 開始時刻: 11:30 / 受付: 00:00 / 終了予定: 00:00</li>
+                    <li>披露宴 開始時刻: 12:00 / 受付: 00:00 / お披楽喜: 00:00</li>
+                    <li>会場情報: favoriホテル</li>
+                    <li>〒100-0000 東京都千代田区◯-◯-◯</li>
+                    <li>TEL: 00-0000-0000</li>
+                </ul>
+                <a href="https://forms.gle/your-rsvp-link" class="btn" target="_blank">RSVPフォーム</a>
+                <a href="https://goo.gl/maps/your-map-link" class="btn" target="_blank">Googleマップで見る</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- ページネーション（点） -->
+    <div class="swiper-pagination"></div>
 </div>
 
-<!-- 4. プロフィール -->
-<div class="page comic-frame">
-    <h1>プロフィール</h1>
-    <ul>
-        <li>新郎: ○○ ○○</li>
-        <li>新婦: ○○ ○○</li>
-        <li>愛犬: ○○</li>
-    </ul>
-</div>
-
-<!-- 5. Party Information -->
-<div class="page comic-frame">
-    <h1>Party Information</h1>
-    <ul>
-        <li>開催日: 2026年3月20日 金曜日</li>
-        <li>挙式 開始時刻: 11:30 / 受付: 00:00 / 終了予定: 00:00</li>
-        <li>披露宴 開始時刻: 12:00 / 受付: 00:00 / お披楽喜: 00:00</li>
-        <li>会場情報: favoriホテル</li>
-        <li>〒100-0000 東京都千代田区◯-◯-◯</li>
-        <li>TEL: 00-0000-0000</li>
-    </ul>
-</div>
-
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script>
-    // スクロールで簡単にページ浮き上がり効果
-    const pages = document.querySelectorAll('.page');
-    window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY + window.innerHeight * 0.7;
-        pages.forEach(page => {
-            if (scrollPos > page.offsetTop) {
-                page.style.opacity = 1;
-                page.style.transform = 'translateY(0)';
-            } else {
-                page.style.opacity = 0.6;
-                page.style.transform = 'translateY(30px)';
-            }
-        });
-    });
-
-    // 初期状態（最初のページは見える）
-    pages.forEach((page, index) => {
-        page.style.opacity = index === 0 ? 1 : 0.6;
-        page.style.transform = 'translateY(0)';
+    // Swiper初期化（横スライド）
+    const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        loop: false,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
     });
 
     // COUNTDOWN タイマー
@@ -174,3 +214,4 @@
 
 </body>
 </html>
+
